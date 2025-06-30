@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const { message } = Astro.props;
+---
+
+<Layout>
+  <Header />
+
+  <section style="padding: 3rem; min-height: 70vh; color: white; text-align: center;">
+    <h1 style="font-size: 2rem; color: red;">Error, Please Logged In</h1>
+    <p style="margin-top: 1rem;">{message}</p>
+    <a href="/" style="margin-top: 2rem; display: inline-block; color: lightblue;">← Go to Home</a>
+  </section>
+
+  <Footer />
+</Layout>
+
+
+

@@ -1,0 +1,50 @@
+---
+
+---
+
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: transparent;">
+ 
+  <img src="/assets/logo.png" alt="Logo" height="100" />
+
+  
+  <nav id="mainNav" style="display: none; gap: 30px; font-weight: bold;">
+    <a href="/home" style="color: white; text-decoration: none;">Home</a>
+    <a href="/about" style="color: white; text-decoration: none;">About</a>
+    <a href="/blog" style="color: white; text-decoration: none;">Blog</a>
+    <a href="/explorer" style="color: white; text-decoration: none;">Explorer</a>
+    <a href="/create" style="color: white; text-decoration: none;">Create</a>
+  </nav>
+
+  
+  <div id="auth-buttons" style="margin-left: 20px;">
+    
+    <a id="signinBtn" href="#" style="display: none;">Sign In</a>
+    <a id="signupBtn" href="#" style="display: none;">Sign Up</a>
+
+    
+    <a id="profileBtn" href="/profile" style="display: none; margin-right: 10px; color: #00c6ff; text-decoration: none;">👤 Profile</a>
+    <button id="logoutBtn" style="display: none; padding: 8px 12px; background: crimson; border: none; border-radius: 5px; color: white; font-weight: bold;">Logout</button>
+  </div>
+
+  <script type="module">
+    const token = localStorage.getItem('token');
+
+    const nav = document.getElementById('mainNav');
+    const profileBtn = document.getElementById('profileBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    
+
+    if (token) {
+      nav.style.display = 'flex';
+      profileBtn.style.display = 'inline';
+      logoutBtn.style.display = 'inline';
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('token');
+      showToast('Logged out');
+      window.location.href = '/';
+    });
+  </script>
+</header>

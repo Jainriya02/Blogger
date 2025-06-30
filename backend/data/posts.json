@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1750921515469",
+    "title": "DSA",
+    "content": "DSA is important",
+    "image": "/assets/banner.png",
+    "category": "technology",
+    "email": "ria@gmail.com"
+  },
+  {
+    "id": "1750922256964",
+    "title": "Java Programming",
+    "content": "Java is a OOPs ",
+    "image": "/assets/banner.png",
+    "category": "technology",
+    "email": "ria@gmail.com"
+  },
+  {
+    "id": "1750922301466",
+    "title": "Astro Language",
+    "content": "Its a javascript framework",
+    "image": "/assets/banner.png",
+    "category": "technology",
+    "email": "test@gmail.com"
+  },
+  {
+    "id": "1750938566565",
+    "title": "Travelling",
+    "content": "Travel to delhi",
+    "image": "/assets/banner.png",
+    "category": "travel",
+    "email": "test@gmail.com"
+  },
+  {
+    "id": "1750938603078",
+    "title": "Travelling to Goa",
+    "content": "Goa",
+    "image": "/assets/banner.png",
+    "category": "travel",
+    "email": "test@gmail.com"
+  },
+  {
+    "id": "1750997845785",
+    "title": "Life life",
+    "content": "Lifestyle",
+    "image": "/assets/banner.png",
+    "category": "lifestyle",
+    "email": "test@gmail.com"
+  },
+  {
+    "id": "1751000874872",
+    "title": "life",
+    "content": "life",
+    "image": "/assets/banner.png",
+    "category": "lifestyle",
+    "email": "test@gmail.com"
+  }
+]

@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+---
+<Layout>
+  <Fragment slot="header"><Header /></Fragment>
+
+  <script type="module">
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/Error";
+    } 
+    </script>
+  
+    <section
+    style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 30px 50px 0;
+      gap: 40px;
+      flex-wrap: wrap;
+    "
+  >
+    <div>
+      <h1 style="font-size: 4rem; color: #00c6ff;">Bloggers</h1>
+      <p style="font-size: 1.2rem; max-width: 400px;">Blogging is sharing your stories to a more beautiful and functional home.</p>
+      <p style="font-size: 1.2rem; max-width: 400px;">It is more than just writing—it's about sharing your voice with the world.</p>
+      <p style="font-size: 1.2rem; max-width: 400px;">Blogger lets you create, explore, and connect with readers across the globe.</p>
+      <p style="font-size: 1.2rem; max-width: 400px;">Start your blogging journey today and let your words make an impact.
+
+</p>
+    </div>
+    <div>
+      <img src="/assets/banner.png" alt="Banner" style="width: 600px; border-radius: 10px;" />
+    </div>
+  </section>
+  <Fragment slot="footer"><Footer /></Fragment>
+</Layout>

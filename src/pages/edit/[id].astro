@@ -1,0 +1,64 @@
+ ---
+export const prerender = false;
+const { id } = Astro.params;
+
+const res = await fetch(`http://localhost:3002/posts/${id}`);
+const post = await res.json();
+
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout>
+  <Header slot="header" />
+  <section style="padding: 2rem; max-width: 600px; margin: auto;">
+    <h2 style="text-align: center; color: #00c6ff;">Edit Blog Post</h2>
+    <form id="editForm" data-id={id} style="display: flex; flex-direction: column; gap: 1rem;">
+      
+      <input type="text" id="title" name="title" value={post.title} required style="padding: 10px;" />
+      <textarea id="content" name="content" required style="padding: 10px; height: 100px;">{post.content}</textarea>
+      <input type="text" id="image" name="image" value={post.image || ''} placeholder="Image URL" style="padding: 10px;" />
+      <button type="submit" style="padding: 10px; background: #00c6ff; color: white; border: none; border-radius: 4px;">Update</button>
+    </form>
+  </section>
+  <Footer slot="footer" />
+
+  <script is:inline>
+    document.getElementById('editForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = e.target.getAttribute('data-id');
+
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+      const image = document.getElementById('image').value.trim();
+
+      const allPosts = await fetch('http://localhost:3002/posts');
+      const posts = await allPosts.json();
+
+      const duplicate = posts.find(p => p.title.toLowerCase() === title.toLowerCase() && p.id !== id);
+
+      if (duplicate) {
+        showToast("Duplicate Title", "A blog with this title already exists.");
+        return;
+      }
+
+      const updated = { title, content, image }; 
+
+      const res = await fetch(`http://localhost:3002/posts/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated)
+      });
+
+      if (res.ok) {
+        showToast("Success", "Post updated!");
+        setTimeout(() => {
+          window.location.href = '/blog';
+        }, 2000);
+      } else {
+        showToast("Error", "Update failed.");
+      }
+    });
+  </script>
+</Layout>

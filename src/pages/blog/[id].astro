@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const res = await fetch('http://localhost:3002/posts');
+  const posts = await res.json();
+
+  return posts.map((_, index) => ({
+    params: { id: index.toString() }
+  }));
+}
+
+const { params } = Astro;
+const response = await fetch('http://localhost:3002/posts');
+const posts = await response.json();
+const post = posts[parseInt(params.id)];
+---
+
+<Layout>
+  <Header slot="header" />
+
+  <section style="padding: 2rem; max-width: 800px; margin: auto; text-align: center;">
+    <h1 style="color: #00c6ff; font-size: 2rem; margin-bottom: 1.5rem;">{post.title}</h1>
+    {post.image && <img src={post.image} alt="Blog image" style="max-width: 50%; height: 120px; border-radius: 6px; margin-bottom: 1.5rem;" />}
+    <p style="font-size: 1.1rem; line-height: 1.6; text-align: left;">{post.content}</p>
+    <a href="/explorer" style="color: #00c6ff; display: inline-block; margin-top: 2rem;">← Back to Explorer</a>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

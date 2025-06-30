@@ -1,0 +1,11 @@
+---
+const { title, content, image } = Astro.props;
+---
+<div class="blog-card">
+  <img src={image} alt={title} />
+  <h3>{title}</h3>
+  <p>{content}</p>
+</div>
+
+
+

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+---
+
+
+<Layout>
+  <Fragment slot="header"><Header /></Fragment>
+
+   <script type="module">
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/Error";
+    } 
+    </script>
+
+  <section style="padding: 4rem 2rem; max-width: 800px; margin: auto; text-align: center;">
+     
+    <h1 style="color: #00c6ff; font-size: 3rem; margin-bottom: 1rem;">Bloggers</h1>
+    <p style="color: white; font-size: 1.2rem; line-height: 1.6;">
+       Bloggers is a platform where creativity meets code. Our mission is to empower individuals to share their thoughts,
+      experiences, and ideas through beautifully written blogs. Whether you're a techie, traveler, or thinker — your story matters.
+    </p>
+  </section>
+  <Fragment slot="footer"><Footer /></Fragment>
+</Layout>
+}

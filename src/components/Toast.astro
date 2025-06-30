@@ -1,0 +1,102 @@
+---
+---
+
+<div id="toast" style="
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  padding: 20px 25px;
+  background-color: white;
+  color: #333;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-left: 8px solid #00c6ff;
+  z-index: 9999;
+">
+  <div style="flex: 1;">
+    <div id="toast-title" style="font-weight: bold; font-size: 1.2rem;"></div>
+    <div id="toast-message" style="margin-top: 4px; font-size: 1rem;"></div>
+  </div>
+
+  <div id="toast-buttons" style="display: flex; gap: 10px; margin-left: 20px;">
+    <button id="toast-ok" style="
+      background: #00c6ff;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+    ">OK</button>
+    <button id="toast-cancel" style="
+      background: #ccc;
+      border: none;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+    ">Cancel</button>
+  </div>
+</div>
+
+<script is:inline>
+  
+  window.showToast = function(title, message) {
+    const toast = document.getElementById('toast');
+    const titleBox = document.getElementById('toast-title');
+    const messageBox = document.getElementById('toast-message');
+    const okBtn = document.getElementById('toast-ok');
+    const cancelBtn = document.getElementById('toast-cancel');
+    const btnBox = document.getElementById('toast-buttons');
+
+    titleBox.textContent = title || '';
+    messageBox.textContent = message || '';
+
+    toast.style.display = 'flex';
+    btnBox.style.display = 'none'; 
+
+    const timeout = setTimeout(() => {
+      toast.style.display = 'none';
+    }, 5000);
+
+    okBtn.onclick = () => {
+      toast.style.display = 'none';
+      clearTimeout(timeout);
+    };
+  };
+
+  
+  window.showToastWithConfirm = function(message, onConfirm) {
+    const toast = document.getElementById('toast');
+    const titleBox = document.getElementById('toast-title');
+    const messageBox = document.getElementById('toast-message');
+    const okBtn = document.getElementById('toast-ok');
+    const cancelBtn = document.getElementById('toast-cancel');
+    const btnBox = document.getElementById('toast-buttons');
+
+    titleBox.textContent = '';
+    messageBox.textContent = message || '';
+
+    toast.style.display = 'flex';
+    btnBox.style.display = 'flex';
+
+    okBtn.onclick = () => {
+      toast.style.display = 'none';
+      if (typeof onConfirm === 'function') onConfirm();
+    };
+
+    cancelBtn.onclick = () => {
+      toast.style.display = 'none';
+    };
+  };
+</script>
